@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registros | NOME DA IGREJA</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/registros.css">
+</head>
+
+<body>
+
+    <div id="site-header"></div>
+
+    <main>
+
+        <section class="registros-intro">
+            <p class="kicker">ACERVO INSTITUCIONAL</p>
+
+            <h1>Registros e documentos.</h1>
+
+            <p>
+                Um arquivo dedicado à preservação de nossa história,
+                de nossas atividades e dos momentos que construíram
+                nossa comunidade.
+            </p>
+        </section>
+
+
+        <section class="documentos">
+
+            <div class="documentos-heading">
+                <div>
+                    <p class="kicker">ARQUIVO</p>
+                    <h2>Documentos disponíveis</h2>
+                </div>
+
+                <span id="contador">01 / 01</span>
+            </div>
+
+
+            <div class="carrossel">
+
+                <button class="seta seta-anterior" id="anterior"
+                    aria-label="Documento anterior">
+                    &#10094;
+                </button>
+
+                <div class="documento-visualizacao" id="visualizacao">
+
+                    <img
+                        src="assets/documentos/documento-01.jpg"
+                        alt="Documento do arquivo"
+                        id="documento-atual"
+                    >
+
+                </div>
+
+                <button class="seta seta-proximo" id="proximo"
+                    aria-label="Próximo documento">
+                    &#10095;
+                </button>
+
+            </div>
+
+
+            <div class="documento-info">
+                <p id="documento-nome">Documento 01</p>
+            </div>
+
+
+            <div class="miniaturas" id="miniaturas">
+
+                <!-- MINIATURAS GERADAS PELO JAVASCRIPT -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- VISUALIZADOR AMPLIADO -->
+
+    <div class="lightbox" id="lightbox">
+
+        <button id="fechar-lightbox" aria-label="Fechar">
+            &times;
+        </button>
+
+        <button id="lightbox-anterior" aria-label="Anterior">
+            &#10094;
+        </button>
+
+        <img src="" alt="Documento ampliado" id="imagem-ampliada">
+
+        <button id="lightbox-proximo" aria-label="Próximo">
+            &#10095;
+        </button>
+
+    </div>
+
+
+    <footer>
+        <p>NOME DA IGREJA</p>
+        <p>Um lugar para encontrar seu propósito.</p>
+        <p>© 2026 — Todos os direitos reservados.</p>
+    </footer>
+
+
+    <script src="js/header.js"></script>
+    <script src="js/registros.js"></script>
+
+</body>
+</html>

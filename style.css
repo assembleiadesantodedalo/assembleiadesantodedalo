@@ -1,0 +1,345 @@
+/* ========================================
+   SANTA AURORA — ESTILO
+======================================== */
+
+:root {
+    --white: #ffffff;
+    --black: #111111;
+    --gray: #777777;
+    --light-gray: #eeeeee;
+    --dark-gray: #333333;
+
+    --font-title: Georgia, "Times New Roman", serif;
+    --font-body: Arial, Helvetica, sans-serif;
+
+    --container: 1100px;
+}
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ESTRUTURA */
+
+main {
+    width: 100%;
+}
+
+section {
+    padding: 100px 30px;
+}
+
+section>* {
+    max-width: var(--container);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* TIPOGRAFIA */
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-title);
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+}
+
+h2 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    margin-bottom: 25px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+p {
+    color: var(--gray);
+}
+
+.kicker {
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 20px;
+}
+
+/* BOTÕES E LINKS */
+
+.button {
+    display: inline-block;
+    padding: 14px 30px;
+
+    background: var(--black);
+    color: var(--white);
+
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+
+    transition: background 0.2s;
+}
+
+.button:hover {
+    background: var(--dark-gray);
+}
+
+/* IMAGENS */
+
+.image-placeholder {
+    width: 100%;
+    min-height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--light-gray);
+    color: var(--gray);
+
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* INÍCIO */
+
+#inicio {
+    padding-top: 100px;
+    padding-bottom: 110px;
+    text-align: center;
+}
+
+#inicio .logo-placeholder {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 40px;
+    background: var(--light-gray);
+}
+
+#inicio .logo-placeholder::after {
+    content: "LOGO";
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+}
+
+#inicio h1 {
+    max-width: 850px;
+    margin-bottom: 25px;
+}
+
+#inicio p {
+    max-width: 620px;
+    margin: 0 auto 35px;
+}
+
+#imagem-principal {
+    max-width: 1000px;
+    min-height: 440px;
+    margin-top: 70px;
+}
+
+/* BOAS-VINDAS */
+
+#boas-vindas {
+    background: var(--light-gray);
+    text-align: center;
+}
+
+#boas-vindas h2 {
+    max-width: 750px;
+}
+
+#boas-vindas p {
+    max-width: 650px;
+    margin-bottom: 30px;
+}
+
+/* PRINCÍPIOS */
+
+#principios {
+    text-align: center;
+}
+
+#principios>h2 {
+    margin-bottom: 55px;
+}
+
+#principios article {
+    display: inline-block;
+    vertical-align: top;
+
+    width: calc(33.333% - 22px);
+    min-height: 210px;
+
+    padding: 25px;
+    margin: 0 8px;
+
+    border-top: 1px solid #cccccc;
+    text-align: left;
+}
+
+#principios article h3 {
+    color: var(--black);
+}
+
+#principios article p {
+    font-size: 0.95rem;
+}
+
+/* COMUNIDADE */
+
+#comunidade {
+    background: var(--light-gray);
+}
+
+#imagem-comunidade {
+    min-height: 380px;
+    margin-bottom: 50px;
+}
+
+#comunidade h2 {
+    max-width: 700px;
+}
+
+#comunidade p {
+    max-width: 650px;
+    margin-bottom: 30px;
+}
+
+/* MENSAGEM */
+
+#mensagem {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+}
+
+#mensagem blockquote {
+    max-width: 850px;
+    margin: 0 auto 25px;
+
+    font-family: var(--font-title);
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    line-height: 1.45;
+}
+
+#mensagem cite {
+    color: #aaaaaa;
+    font-size: 0.85rem;
+    font-style: normal;
+}
+
+/* CONVITE */
+
+#convite {
+    text-align: center;
+}
+
+#convite h2 {
+    max-width: 750px;
+}
+
+#convite p {
+    max-width: 600px;
+    margin-bottom: 35px;
+}
+
+/* RODAPÉ */
+
+footer {
+    padding: 50px 25px;
+    background: var(--light-gray);
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+footer p:first-child {
+    color: var(--black);
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+    section {
+        padding: 70px 22px;
+    }
+
+    #inicio {
+        padding-top: 65px;
+    }
+
+    #imagem-principal {
+        min-height: 280px;
+        margin-top: 45px;
+    }
+
+    #imagem-comunidade {
+        min-height: 250px;
+    }
+
+    #principios article {
+        display: block;
+        width: 100%;
+        min-height: auto;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+
+    section {
+        padding: 55px 20px;
+    }
+
+    #imagem-principal {
+        min-height: 220px;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+}
