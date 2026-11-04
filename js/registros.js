@@ -1,184 +1,126 @@
 
-/* ========================================
-   DOCUMENTOS DO ACERVO
-======================================== */
-
-// Para adicionar um documento, basta copiar
-// um dos objetos abaixo e alterar as informações.
-
 const documentos = [
-
     {
-        imagem: "assets/documentos/documento-01.jpg",
-        nome: "Registro institucional"
+        imagem: "assets/documentos/doc-convite.png",
+        nome: "Convite."
     },
-
     {
-        imagem: "assets/documentos/documento-02.jpg",
-        nome: "Documento de fundação"
-    },
-
-    {
-        imagem: "assets/documentos/documento-03.jpg",
-        nome: "Registro de atividades"
-    },
-
-    {
-        imagem: "assets/documentos/documento-04.jpg",
-        nome: "Arquivo histórico"
+        imagem: "assets/documentos/doc-reza-anti-demonio.png",
+        nome: "Proteção contra o mal."
     }
-
 ];
 
+let atual = 0;
+let animando = false;
 
-/* ========================================
-   ELEMENTOS
-======================================== */
+const anterior = document.getElementById("doc-anterior");
+const central = document.getElementById("doc-atual");
+const proximo = document.getElementById("doc-proximo");
 
-const imagem = document.getElementById("documento-atual");
 const contador = document.getElementById("contador");
-const nome = document.getElementById("documento-nome");
-const miniaturas = document.getElementById("miniaturas");
+const nome = document.getElementById("nome-documento");
 
-const lightbox = document.getElementById("lightbox");
-const imagemAmpliada = document.getElementById("imagem-ampliada");
+function indiceCircular(indice) {
+    return (indice + documentos.length) % documentos.length;
+}
 
-let indiceAtual = 0;
+function preencher(elemento, indice) {
+    const documento = documentos[indice];
 
+    elemento.replaceChildren();
 
-/* ========================================
-   EXIBIR DOCUMENTO
-======================================== */
-
-function mostrarDocumento(indice) {
-
-    if (documentos.length === 0) return;
-
-    indiceAtual = (indice + documentos.length) % documentos.length;
-
-    const documento = documentos[indiceAtual];
-
+    const imagem = document.createElement("img");
     imagem.src = documento.imagem;
     imagem.alt = documento.nome;
 
-    nome.textContent = documento.nome;
+    elemento.appendChild(imagem);
+}
+
+
+function atualizar() {
+    const total = documentos.length;
+
+    preencher(central, atual);
+
+    if (total > 1) {
+        preencher(anterior, indiceCircular(atual - 1));
+        preencher(proximo, indiceCircular(atual + 1));
+
+        anterior.style.display = "";
+        proximo.style.display = "";
+
+        document.getElementById("anterior").style.display = "";
+        document.getElementById("proximo").style.display = "";
+    } else {
+        anterior.replaceChildren();
+        proximo.replaceChildren();
+
+        anterior.style.display = "none";
+        proximo.style.display = "none";
+
+        document.getElementById("anterior").style.display = "none";
+        document.getElementById("proximo").style.display = "none";
+    }
 
     contador.textContent =
-        `${String(indiceAtual + 1).padStart(2, "0")} / ${String(documentos.length).padStart(2, "0")}`;
+        `${String(atual + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
 
-    atualizarMiniaturas();
-
+    nome.textContent = documentos[atual].nome;
 }
 
 
-/* ========================================
-   MINIATURAS
-======================================== */
+function navegar(direcao) {
+    if (animando || documentos.length < 2) return;
 
-function atualizarMiniaturas() {
+    animando = true;
 
-    miniaturas.innerHTML = "";
+    const saindo = direcao === 1 ? anterior : proximo;
+    const entrando = direcao === 1 ? proximo : anterior;
 
-    documentos.forEach((documento, indice) => {
+    // Anima os documentos para suas novas posições
+    anterior.style.transition = "transform .45s ease, opacity .45s ease";
+    central.style.transition = "transform .45s ease, opacity .45s ease";
+    proximo.style.transition = "transform .45s ease, opacity .45s ease";
 
-        const miniatura = document.createElement("button");
+    anterior.style.transform = direcao === 1
+        ? "translate(calc(-50% - 500px), -50%)"
+        : "translate(calc(-50% - 260px), -50%)";
 
-        miniatura.className = "miniatura";
+    proximo.style.transform = direcao === 1
+        ? "translate(calc(-50% + 260px), -50%)"
+        : "translate(calc(-50% + 500px), -50%)";
 
-        if (indice === indiceAtual) {
-            miniatura.classList.add("ativa");
-        }
+    central.style.opacity = ".4";
 
-        const img = document.createElement("img");
+    setTimeout(() => {
+        atual = indiceCircular(atual + direcao);
 
-        img.src = documento.imagem;
-        img.alt = documento.nome;
-
-        miniatura.appendChild(img);
-
-        miniatura.addEventListener("click", () => {
-            mostrarDocumento(indice);
+        // Remove as transições antes de reorganizar os documentos
+        [anterior, central, proximo].forEach(elemento => {
+            elemento.style.transition = "none";
+            elemento.style.transform = "";
+            elemento.style.opacity = "";
         });
 
-        miniaturas.appendChild(miniatura);
+        atualizar();
 
-    });
+        // Força a atualização visual antes de reativar as transições
+        void central.offsetWidth;
 
+        [anterior, central, proximo].forEach(elemento => {
+            elemento.style.transition = "";
+        });
+
+        animando = false;
+    }, 450);
 }
 
+document.getElementById("anterior").addEventListener("click", () => navegar(-1));
+document.getElementById("proximo").addEventListener("click", () => navegar(1));
 
-/* ========================================
-   NAVEGAÇÃO
-======================================== */
-
-document.getElementById("anterior").addEventListener("click", () => {
-    mostrarDocumento(indiceAtual - 1);
+document.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft") navegar(-1);
+    if (event.key === "ArrowRight") navegar(1);
 });
 
-document.getElementById("proximo").addEventListener("click", () => {
-    mostrarDocumento(indiceAtual + 1);
-});
-
-
-/* ========================================
-   LIGHTBOX
-======================================== */
-
-function abrirLightbox() {
-
-    imagemAmpliada.src = documentos[indiceAtual].imagem;
-    imagemAmpliada.alt = documentos[indiceAtual].nome;
-
-    lightbox.classList.add("aberto");
-
-}
-
-function fecharLightbox() {
-    lightbox.classList.remove("aberto");
-}
-
-imagem.addEventListener("click", abrirLightbox);
-
-document.getElementById("fechar-lightbox")
-    .addEventListener("click", fecharLightbox);
-
-document.getElementById("lightbox-anterior")
-    .addEventListener("click", () => {
-        mostrarDocumento(indiceAtual - 1);
-        abrirLightbox();
-    });
-
-document.getElementById("lightbox-proximo")
-    .addEventListener("click", () => {
-        mostrarDocumento(indiceAtual + 1);
-        abrirLightbox();
-    });
-
-lightbox.addEventListener("click", (evento) => {
-    if (evento.target === lightbox) {
-        fecharLightbox();
-    }
-});
-
-document.addEventListener("keydown", (evento) => {
-
-    if (evento.key === "Escape") {
-        fecharLightbox();
-    }
-
-    if (evento.key === "ArrowLeft") {
-        mostrarDocumento(indiceAtual - 1);
-    }
-
-    if (evento.key === "ArrowRight") {
-        mostrarDocumento(indiceAtual + 1);
-    }
-
-});
-
-
-/* ========================================
-   INICIALIZAÇÃO
-======================================== */
-
-mostrarDocumento(0);
+atualizar();

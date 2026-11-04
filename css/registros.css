@@ -1,273 +1,219 @@
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background: #fff;
+}
 
-/* ========================================
-   INTRODUÇÃO
-======================================== */
+.pagina-registros {
+    min-height: calc(100vh - 102px);
+    padding: 60px 0;
+    overflow: hidden;
+    text-align: center;
+}
 
 .registros-intro {
-    padding: 100px 30px 70px;
-    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 55px;
 }
 
 .registros-intro h1 {
-    margin-bottom: 25px;
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: normal;
+    color: #111;
 }
 
-.registros-intro p:not(.kicker) {
-    max-width: 650px;
-    margin: 0 auto;
+.registros-intro p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #666;
 }
-
-
-/* ========================================
-   DOCUMENTOS
-======================================== */
-
-.documentos {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 30px 100px;
-}
-
-.documentos-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-
-    border-bottom: 1px solid #cccccc;
-    padding-bottom: 20px;
-    margin-bottom: 35px;
-}
-
-.documentos-heading h2 {
-    margin-bottom: 0;
-}
-
-#contador {
-    color: #777777;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-}
-
-
-/* ========================================
-   CARROSSEL
-======================================== */
 
 .carrossel {
-    display: grid;
-    grid-template-columns: 50px minmax(0, 1fr) 50px;
-    align-items: center;
-    gap: 20px;
-}
-
-.documento-visualizacao {
     width: 100%;
-    height: 650px;
-
+    max-width: 1250px;
+    height: 550px;
+    margin: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    position: relative;
+}
 
-    background: #eeeeee;
+.documentos {
+    position: relative;
+    flex: 1;
+    height: 100%;
     overflow: hidden;
 }
 
-.documento-visualizacao img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    cursor: zoom-in;
+
+.documentos {
+    position: relative;
+    flex: 1;
+    height: 560px;
+    overflow: hidden;
 }
 
-.seta {
-    width: 45px;
-    height: 45px;
+.documento {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
-    border: none;
-    background: transparent;
-
-    color: #222222;
-    font-size: 25px;
-
-    cursor: pointer;
-}
-
-.seta:hover {
-    color: #888888;
-}
-
-
-/* ========================================
-   INFORMAÇÕES
-======================================== */
-
-.documento-info {
-    text-align: center;
-    padding: 20px 0;
-}
-
-.documento-info p {
-    color: #555555;
-    font-size: 0.9rem;
-}
-
-
-/* ========================================
-   MINIATURAS
-======================================== */
-
-.miniaturas {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-
-    margin-top: 20px;
-}
-
-.miniatura {
-    width: 75px;
-    height: 95px;
-
-    padding: 3px;
-
-    border: 1px solid #cccccc;
-    background: white;
-
-    cursor: pointer;
-    opacity: 0.55;
-}
-
-.miniatura img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.miniatura:hover,
-.miniatura.ativa {
-    opacity: 1;
-    border-color: #111111;
-}
-
-
-/* ========================================
-   LIGHTBOX
-======================================== */
-
-.lightbox {
-    display: none;
-
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-
-    background: rgba(0, 0, 0, 0.95);
-
     align-items: center;
     justify-content: center;
 
-    padding: 50px;
-}
+    transform: translate(-50%, -50%);
 
-.lightbox.aberto {
-    display: flex;
-}
+    transition:
+        transform .45s ease,
+        opacity .45s ease;
 
-.lightbox img {
-    max-width: 85%;
-    max-height: 90vh;
-    object-fit: contain;
-}
-
-.lightbox button {
-    position: absolute;
-
-    border: none;
-    background: transparent;
-    color: white;
-
-    font-size: 35px;
     cursor: pointer;
 }
 
-#fechar-lightbox {
-    top: 20px;
-    right: 30px;
-    font-size: 45px;
+.documento img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-#lightbox-anterior {
-    left: 30px;
+.documento.central {
+    z-index: 2;
+
+    width: 420px;
+    height: 540px;
+
+    opacity: 1;
+    cursor: default;
 }
 
-#lightbox-proximo {
-    right: 30px;
+.documento.lateral {
+    z-index: 1;
+
+    width: 340px;
+    height: 460px;
+
+    opacity: .4;
+}
+
+#doc-anterior {
+    transform: translate(calc(-50% - 390px), -50%);
+}
+
+#doc-proximo {
+    transform: translate(calc(-50% + 390px), -50%);
 }
 
 
-/* ========================================
-   RESPONSIVIDADE
-======================================== */
+.carrossel button {
+    position: relative;
+    z-index: 5;
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    border: 0;
+    background: transparent;
+    color: #222;
+    font-size: 30px;
+    cursor: pointer;
+}
 
-@media (max-width: 768px) {
+.carrossel button:hover {
+    color: #999;
+}
 
-    .registros-intro {
-        padding: 65px 20px 45px;
+.informacoes {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.informacoes span {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: #888;
+}
+
+.informacoes h2 {
+    margin-top: 10px;
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-weight: normal;
+    color: #222;
+}
+
+@media (max-width: 900px) {
+    .carrossel {
+        height: 470px;
     }
 
     .documentos {
-        padding: 30px 15px 70px;
-    }
-
-    .carrossel {
-        grid-template-columns: 30px minmax(0, 1fr) 30px;
-        gap: 5px;
-    }
-
-    .documento-visualizacao {
         height: 480px;
     }
 
-    .seta {
-        width: 30px;
-        font-size: 20px;
+    .documento.central {
+        width: 320px;
+        height: 460px;
     }
 
-    .miniatura {
-        width: 55px;
-        height: 75px;
-    }
-
-    .lightbox {
-        padding: 15px;
-    }
-
-    .lightbox img {
-        max-width: 90%;
-    }
-
-    #lightbox-anterior {
-        left: 5px;
-    }
-
-    #lightbox-proximo {
-        right: 5px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .documento-visualizacao {
+    .documento.lateral {
+        width: 250px;
         height: 380px;
     }
 
-    .documentos-heading {
-        align-items: center;
+    #doc-anterior {
+        transform: translate(calc(-50% - 270px), -50%);
     }
 
-    .documentos-heading h2 {
-        font-size: 1.8rem;
+    #doc-proximo {
+        transform: translate(calc(-50% + 270px), -50%);
+    }
+}
+
+@media (max-width: 600px) {
+    .pagina-registros {
+        padding-top: 40px;
     }
 
+    .carrossel {
+        height: 400px;
+    }
+
+    .documentos {
+        height: 400px;
+    }
+
+    .documento.central {
+        width: 230px;
+        height: 380px;
+    }
+
+    .documento.lateral {
+        width: 170px;
+        height: 290px;
+        opacity: .25;
+    }
+
+    #doc-anterior {
+        transform: translate(calc(-50% - 150px), -50%);
+    }
+
+    #doc-proximo {
+        transform: translate(calc(-50% + 150px), -50%);
+    }
+
+    .carrossel button {
+        width: 35px;
+        font-size: 23px;
+    }
 }
