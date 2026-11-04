@@ -1,5 +1,5 @@
 /* ========================================
-   SANTA AURORA — ESTILO
+   ESTILO — NOME DA IGREJA
 ======================================== */
 
 :root {
@@ -130,46 +130,87 @@ p {
     text-transform: uppercase;
 }
 
-/* INÍCIO */
+
+/* ========================================
+   HERO — INÍCIO
+======================================== */
 
 #inicio {
-    padding-top: 100px;
-    padding-bottom: 110px;
+    position: relative;
+    width: 100%;
+    height: 650px;
+    min-height: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    background: var(--black);
     text-align: center;
 }
 
-#inicio .logo-placeholder {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 40px;
-    background: var(--light-gray);
-}
+#inicio .hero-image {
+    position: absolute;
+    inset: 0;
 
-#inicio .logo-placeholder::after {
-    content: "LOGO";
-    display: flex;
+    width: 100%;
+    max-width: none;
     height: 100%;
-    align-items: center;
-    justify-content: center;
-    color: var(--gray);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
+    margin: 0;
 }
 
-#inicio h1 {
+#inicio .hero-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+#inicio .hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+}
+
+#inicio .hero-content {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
     max-width: 850px;
+    margin: 0;
+    padding: 100px 25px;
+}
+
+#inicio .hero-content .kicker {
+    color: #dddddd;
+}
+
+#inicio .hero-content h1 {
+    color: var(--white);
     margin-bottom: 25px;
 }
 
-#inicio p {
+#inicio .hero-content p {
     max-width: 620px;
     margin: 0 auto 35px;
+    color: #eeeeee;
 }
 
-#imagem-principal {
-    max-width: 1000px;
-    min-height: 440px;
-    margin-top: 70px;
+#inicio .hero-content .button {
+    background: var(--white);
+    color: var(--black);
+}
+
+#inicio .hero-content .button:hover {
+    background: #dddddd;
 }
 
 /* BOAS-VINDAS */
@@ -188,47 +229,32 @@ p {
     margin-bottom: 30px;
 }
 
-/* PRINCÍPIOS */
-
-#principios {
-    text-align: center;
-}
-
-#principios>h2 {
-    margin-bottom: 55px;
-}
-
-#principios article {
-    display: inline-block;
-    vertical-align: top;
-
-    width: calc(33.333% - 22px);
-    min-height: 210px;
-
-    padding: 25px;
-    margin: 0 8px;
-
-    border-top: 1px solid #cccccc;
-    text-align: left;
-}
-
-#principios article h3 {
-    color: var(--black);
-}
-
-#principios article p {
-    font-size: 0.95rem;
-}
-
 /* COMUNIDADE */
 
 #comunidade {
+    border-top: 2px solid #dddddd;
+    padding-top: 100px;
+    border-bottom: 2px solid #dddddd;
+    padding-bottom: 100px;
     background: var(--light-gray);
 }
 
+/* FOTO DA COMUNIDADE */
+
 #imagem-comunidade {
-    min-height: 380px;
-    margin-bottom: 50px;
+    width: 100%;
+    max-width: 650px;
+    aspect-ratio: 4 / 3;
+    margin: 0 auto 40px;
+    overflow: hidden;
+}
+
+#imagem-comunidade img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 #comunidade h2 {
@@ -263,21 +289,6 @@ p {
     font-style: normal;
 }
 
-/* CONVITE */
-
-#convite {
-    text-align: center;
-}
-
-#convite h2 {
-    max-width: 750px;
-}
-
-#convite p {
-    max-width: 600px;
-    margin-bottom: 35px;
-}
-
 /* RODAPÉ */
 
 footer {
@@ -297,20 +308,65 @@ footer p:first-child {
     font-size: 1.4rem;
 }
 
-/* RESPONSIVIDADE */
+/* BOTÃO CONHEÇA NOSSA HISTÓRIA */
+
+a.botao-historia {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: fit-content;
+    padding: 14px 22px;
+
+    background-color: #ffffff;
+    color: #111111 !important;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none !important;
+    text-transform: uppercase;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition: background-color 0.2s;
+}
+
+a.botao-historia img {
+    display: block;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+a.botao-historia span {
+    display: block;
+    color: #111111;
+}
+
+a.botao-historia:hover {
+    background-color: #dddddd;
+    color: #111111;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
 
 @media (max-width: 768px) {
+
     section {
         padding: 70px 22px;
     }
 
     #inicio {
-        padding-top: 65px;
+        height: 580px;
     }
 
-    #imagem-principal {
-        min-height: 280px;
-        margin-top: 45px;
+    #inicio .hero-content {
+        padding: 80px 22px;
     }
 
     #imagem-comunidade {
@@ -326,6 +382,7 @@ footer p:first-child {
 }
 
 @media (max-width: 480px) {
+
     body {
         font-size: 15px;
     }
@@ -334,12 +391,11 @@ footer p:first-child {
         padding: 55px 20px;
     }
 
-    #imagem-principal {
-        min-height: 220px;
+    #inicio {
+        height: 540px;
     }
 
-    .button {
-        width: 100%;
-        text-align: center;
+    #inicio .hero-content {
+        padding: 65px 20px;
     }
 }
